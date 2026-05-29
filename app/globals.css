@@ -1,0 +1,18 @@
+/* tailwindcss must come first so its `@layer theme, base, components, utilities;`
+   order declaration is emitted before the design system's @layer components
+   block. Otherwise the implicit (first-appearance) order is
+   `components → base`, which lets Tailwind's preflight `* { padding: 0 }`
+   override design-system component rules. */
+@import "tailwindcss";
+@import "@jasperlepardo/design-system/styles";
+@import "@jasperlepardo/design-system/theme";
+@import "@jasperlepardo/design-system/fonts";
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
