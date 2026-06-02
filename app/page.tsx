@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import {
   Button,
   ButtonGroup,
@@ -31,6 +32,17 @@ const expiryDayOptions = [
 ];
 
 export default function CheckoutPage() {
+  const [customerName, setCustomerName] = useState("");
+  const [email, setEmail] = useState("");
+  const [amount, setAmount] = useState("");
+  const [description, setDescription] = useState("");
+
+  const canSubmit =
+    customerName.trim() !== "" &&
+    email.trim() !== "" &&
+    amount.trim() !== "" &&
+    description.trim() !== "";
+
   return (
     <Page>
       <Navbar>
@@ -60,11 +72,17 @@ export default function CheckoutPage() {
                         <TextField
                           label="Customer Name"
                           placeholder="Enter Customer Name"
+                          required
+                          value={customerName}
+                          onChange={(e) => setCustomerName(e.target.value)}
                         />
                         <TextField
                           label="Email Address"
                           type="email"
                           placeholder="name@company.com"
+                          required
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
                         />
                       </Form.Group>
                     </Form.Section>
@@ -78,8 +96,17 @@ export default function CheckoutPage() {
                           label="Amount"
                           currencySymbol="PHP"
                           placeholder="0.00"
+                          required
+                          value={amount}
+                          onValueChange={setAmount}
                         />
-                        <Textarea label="Description" placeholder="Description" />
+                        <Textarea
+                          label="Description"
+                          placeholder="Description"
+                          required
+                          value={description}
+                          onChange={(e) => setDescription(e.target.value)}
+                        />
                         <Select
                           label="Payment Request Expiry"
                           subLabel="(Days)"
@@ -95,10 +122,9 @@ export default function CheckoutPage() {
                     </Form.Section>
 
                     <ButtonGroup fill>
-                      <Button type="button" variant="outline">
-                        Secondary
+                      <Button type="submit" disabled={!canSubmit}>
+                        Submit
                       </Button>
-                      <Button type="submit">Button</Button>
                     </ButtonGroup>
                   </Form>
                 </Card.Body>
