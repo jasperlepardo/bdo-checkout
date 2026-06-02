@@ -1,6 +1,5 @@
 "use client";
 
-import type { CSSProperties } from "react";
 import {
   Button,
   ButtonGroup,
@@ -31,10 +30,6 @@ const expiryDayOptions = [
   { value: "30", label: "30" },
 ];
 
-const cardStyle = {
-  "--card-padding": "var(--space-4xl)",
-} as CSSProperties;
-
 export default function CheckoutPage() {
   return (
     <Page>
@@ -55,9 +50,9 @@ export default function CheckoutPage() {
         <Section.Container>
           <Row>
             <Column variant="centered">
-              <Card style={cardStyle}>
-                <Card.Header as="h2" heading="Create a Payment Request" />
+              <Card density="spacious">
                 <Card.Body>
+                  <Card.Header as="h2" heading="Create a Payment Request" />
                   <Form onSubmit={(e) => e.preventDefault()}>
                     <Form.Section>
                       <Form.Header as="h3" heading="Customer Information" />
