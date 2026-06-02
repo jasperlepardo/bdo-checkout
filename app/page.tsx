@@ -18,7 +18,6 @@ import {
   Row,
   Section,
   Select,
-  Text,
   TextField,
   Textarea,
 } from "@jasperlepardo/design-system";
@@ -56,14 +55,11 @@ export default function CheckoutPage() {
           <Row>
             <Column variant="centered">
               <Card style={cardStyle}>
+                <Card.Header as="h2" heading="Create a Payment Request" />
                 <Card.Body>
                   <Form onSubmit={(e) => e.preventDefault()}>
-                    <Text as="h1" variant="heading-2" tone="primary" weight="bold">
-                      Create a Payment Request
-                    </Text>
-
                     <Form.Section>
-                      <Form.Header as="h2" heading="Customer Information" />
+                      <Form.Header as="h3" heading="Customer Information" />
                       <Form.Group>
                         <TextField
                           label="Customer Name"
@@ -80,7 +76,7 @@ export default function CheckoutPage() {
                     <Divider />
 
                     <Form.Section>
-                      <Form.Header as="h2" heading="Billing Details" />
+                      <Form.Header as="h3" heading="Billing Details" />
                       <Form.Group>
                         <CurrencyInput
                           label="Amount"
