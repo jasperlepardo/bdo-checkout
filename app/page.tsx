@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
+import { useRouter } from "next/navigation";
 import {
   Button,
   ButtonGroup,
@@ -32,16 +33,33 @@ const expiryDayOptions = [
 ];
 
 export default function CheckoutPage() {
+  const router = useRouter();
   const [customerName, setCustomerName] = useState("");
   const [email, setEmail] = useState("");
   const [amount, setAmount] = useState("");
   const [description, setDescription] = useState("");
+  const [expiry, setExpiry] = useState("1");
+  const [sellersNotes, setSellersNotes] = useState("");
 
   const canSubmit =
     customerName.trim() !== "" &&
     email.trim() !== "" &&
     amount.trim() !== "" &&
     description.trim() !== "";
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!canSubmit) return;
+    const params = new URLSearchParams({
+      customerName,
+      email,
+      amount,
+      description,
+      expiry,
+      sellersNotes,
+    });
+    router.push(`/summary?${params.toString()}`);
+  };
 
   return (
     <Page>
@@ -65,7 +83,7 @@ export default function CheckoutPage() {
               <Card density="spacious">
                 <Card.Body>
                   <Card.Header as="h2" heading="Create a Payment Request" />
-                  <Form onSubmit={(e) => e.preventDefault()}>
+                  <Form onSubmit={handleSubmit}>
                     <Form.Section>
                       <Form.Header as="h3" heading="Customer Information" />
                       <Form.Group>
@@ -111,12 +129,15 @@ export default function CheckoutPage() {
                           label="Payment Request Expiry"
                           subLabel="(Days)"
                           options={expiryDayOptions}
-                          defaultValue="1"
+                          value={expiry}
+                          onValueChange={setExpiry}
                         />
                         <Textarea
                           label="Seller's Notes"
                           subLabel="(Optional)"
                           placeholder="Seller's Notes"
+                          value={sellersNotes}
+                          onChange={(e) => setSellersNotes(e.target.value)}
                         />
                       </Form.Group>
                     </Form.Section>
