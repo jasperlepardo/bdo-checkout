@@ -6,7 +6,9 @@ import {
   Card,
   Column,
   CurrencyInput,
+  Divider,
   FooterCheckout,
+  Form,
   Logo,
   Navbar,
   NavbarActions,
@@ -55,19 +57,14 @@ export default function CheckoutPage() {
             <Column variant="centered">
               <Card style={cardStyle}>
                 <Card.Body>
-                  <form
-                    className="flex flex-col gap-4xl"
-                    onSubmit={(e) => e.preventDefault()}
-                  >
+                  <Form onSubmit={(e) => e.preventDefault()}>
                     <Text as="h1" variant="heading-2" tone="primary" weight="bold">
                       Create a Payment Request
                     </Text>
 
-                    <div className="flex flex-col gap-2xl">
-                      <Text as="h2" variant="heading-4" weight="bold">
-                        Customer Information
-                      </Text>
-                      <div className="flex flex-col gap-xl">
+                    <Form.Section>
+                      <Form.Header as="h2" heading="Customer Information" />
+                      <Form.Group>
                         <TextField
                           label="Customer Name"
                           placeholder="Enter Customer Name"
@@ -77,25 +74,20 @@ export default function CheckoutPage() {
                           type="email"
                           placeholder="name@company.com"
                         />
-                      </div>
-                    </div>
+                      </Form.Group>
+                    </Form.Section>
 
-                    <hr className="border-0 border-t border-border" />
+                    <Divider />
 
-                    <div className="flex flex-col gap-2xl">
-                      <Text as="h2" variant="heading-4" weight="bold">
-                        Billing Details
-                      </Text>
-                      <div className="flex flex-col gap-xl">
+                    <Form.Section>
+                      <Form.Header as="h2" heading="Billing Details" />
+                      <Form.Group>
                         <CurrencyInput
                           label="Amount"
                           currencySymbol="PHP"
                           placeholder="0.00"
                         />
-                        <Textarea
-                          label="Description"
-                          placeholder="Description"
-                        />
+                        <Textarea label="Description" placeholder="Description" />
                         <Select
                           label="Payment Request Expiry"
                           subLabel="(Days)"
@@ -107,22 +99,18 @@ export default function CheckoutPage() {
                           subLabel="(Optional)"
                           placeholder="Seller's Notes"
                         />
-                      </div>
-                    </div>
+                      </Form.Group>
+                    </Form.Section>
 
                     <div className="flex gap-4xl">
-                      <Button
-                        type="button"
-                        variant="outline"
-                        className="flex-1"
-                      >
+                      <Button type="button" variant="outline" className="flex-1">
                         Secondary
                       </Button>
                       <Button type="submit" className="flex-1">
                         Button
                       </Button>
                     </div>
-                  </form>
+                  </Form>
                 </Card.Body>
               </Card>
             </Column>
