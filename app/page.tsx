@@ -3,6 +3,7 @@
 import type { CSSProperties } from "react";
 import {
   Button,
+  ButtonGroup,
   Card,
   Column,
   CurrencyInput,
@@ -98,14 +99,12 @@ export default function CheckoutPage() {
                       </Form.Group>
                     </Form.Section>
 
-                    <div className="flex gap-4xl">
-                      <Button type="button" variant="outline" className="flex-1">
+                    <ButtonGroup fill>
+                      <Button type="button" variant="outline">
                         Secondary
                       </Button>
-                      <Button type="submit" className="flex-1">
-                        Button
-                      </Button>
-                    </div>
+                      <Button type="submit">Button</Button>
+                    </ButtonGroup>
                   </Form>
                 </Card.Body>
               </Card>
