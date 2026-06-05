@@ -1,6 +1,26 @@
-# BDO Checkout
+# Prototypes
 
-A Next.js (App Router) application that consumes the BDO design system (`@jasperlepardo/design-system`) and renders the BDO Checkout page.
+A Next.js (App Router) app that hosts multiple prototypes, each on the BDO design system (`@jasperlepardo/design-system`). The home page (`/`) is a gallery; each prototype lives under its own route (e.g. `/bdo-checkout`).
+
+## Structure
+
+```
+app/
+  page.tsx          # gallery at "/" (generated from lib/prototypes.ts)
+  layout.tsx        # root layout — theme-neutral, owns <html>/<body>
+  <slug>/           # one folder per prototype
+    layout.tsx      # sets the prototype's data-theme + page title
+    page.tsx        # the prototype's entry screen (+ nested routes)
+lib/prototypes.ts   # registry powering the gallery
+```
+
+## Adding a prototype
+
+1. Create `app/<slug>/` with a `layout.tsx` (set `data-theme` and `metadata.title`) and a `page.tsx`. Add nested routes (`app/<slug>/<step>/page.tsx`) as needed — route names are scoped to the slug, so they never collide with other prototypes.
+2. Build internal links from a local `const BASE = "/<slug>"`.
+3. Add one entry to `lib/prototypes.ts`.
+
+Available design-system themes: `bdo-unibank`, `bdo-pay-light`, `bdo-pay-dark`, `bdo-wealth`.
 
 ## Prerequisites
 

@@ -49,7 +49,7 @@ export function SummaryView({
       expiry,
       sellersNotes,
     }).filter(([, v]) => v != null && v !== "") as [string, string][];
-    router.push(`/success?${new URLSearchParams(entries).toString()}`);
+    router.push(`/bdo-checkout/success?${new URLSearchParams(entries).toString()}`);
   };
 
   const rows = [

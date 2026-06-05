@@ -169,7 +169,7 @@ export function SuccessView({
                         </List.Group>
                       </List>
                       <ButtonGroup fill>
-                        <Button onClick={() => router.push("/")}>
+                        <Button onClick={() => router.push("/bdo-checkout")}>
                           Send another Payment Request
                         </Button>
                       </ButtonGroup>
